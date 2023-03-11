@@ -1,0 +1,27 @@
+int res = 0;      /* declaring the variable that will store the value of photoresistor*/
+int sensor = 34;   /* assigning Arduino pin for photoresistor*/
+int led = 26;      /* assigning Arduino pin for LED*/
+
+void setup() {
+    Serial.begin(115200); /*setting the baud rate for serial communication*/
+    pinMode(26, OUTPUT);  /* assigning mode to LED pin */
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    res = analogRead(sensor); /* getting the value of photoresistor*/
+
+    Serial.println(res); /* displaying the photoresistor value on serial monitor */
+
+    if(res  > 10) { /* when the value of sensor is less than 100 */
+        Serial.println(" High intensity ");
+        digitalWrite(led, LOW);   /* keep the LED off*/
+    }
+    
+    else { /* otherwise turn the light on */
+        Serial.println("Low Intensity ");
+        digitalWrite(led, HIGH); /* turn the LED on*/
+    }
+    
+    delay(1000);
+}
